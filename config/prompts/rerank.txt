@@ -1,0 +1,2 @@
+Rank the candidate chunks by relevance to the query.
+Return only the ordered chunk ids in JSON.

@@ -1,0 +1,2 @@
+Describe the image accurately for retrieval.
+Focus on entities, actions, numbers, and chart/table trends.

@@ -1,0 +1,5 @@
+Refine the following chunk for semantic retrieval while preserving facts.
+Do not invent information.
+
+Text:
+{text}

@@ -1953,8 +1953,7 @@ dashboard:
 |---------|---------|------|---------|------|
 | A1 | 初始化目录树与最小可运行入口 | [x] | 2026-04-05 | scaffold complete |
 | A2 | 引入 pytest 并建立测试目录约定 | [x] | 2026-04-05 | pytest scaffold complete |
-| A3 | 配置加载与校验（Settings） | [ ] | | |
-
+| A3 | 配置加载与校验（Settings） | [x] | 2026-04-05 | settings loader + tests |
 #### 阶段 B：Libs 可插拔层
 
 | 任务编号 | 任务名称 | 状态 | 完成日期 | 备注 |

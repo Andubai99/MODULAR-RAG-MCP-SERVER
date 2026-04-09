@@ -15,7 +15,7 @@ class EmbeddingFactory:
     """Provider registry and constructor for embedding implementations."""
 
     _REGISTRY: dict[str, FactoryBuilder] = {}
-    _BUILTIN_PROVIDERS = {"openai", "azure"}
+    _BUILTIN_PROVIDERS = {"openai", "azure", "ollama"}
 
     @classmethod
     def register(cls, provider: str, builder: FactoryBuilder) -> None:
@@ -60,4 +60,8 @@ class EmbeddingFactory:
             from libs.embedding.azure_embedding import AzureEmbedding
 
             return AzureEmbedding
+        if provider == "ollama":
+            from libs.embedding.ollama_embedding import OllamaEmbedding
+
+            return OllamaEmbedding
         return None

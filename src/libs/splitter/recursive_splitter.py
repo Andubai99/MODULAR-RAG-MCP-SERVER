@@ -6,6 +6,14 @@ from dataclasses import dataclass
 
 from libs.splitter.base_splitter import BaseSplitter
 
+"""
+该文件实现一个递归文本切分器：
+先识别并保护 Markdown 代码块，再按空行、换行、空格等分隔符逐层递归切分普通文本，
+最后将小片段按块大小和重叠规则合并成适合后续处理的文本块。
+也就是说这个切分对于普通文本来说，刚开始没有考虑重叠规则，先按照各种分隔符切成了非常碎的各种句子，最后再统一合并成了最终文本块 chunks, 并应用重叠规则。
+如果 overlap + 新片段组成的新块仍然超长，且不含代码块，那么就对这个“新块整体”再硬切，而不是只保留 overlap。
+例如current = "CD\nEFGH", overlap = "CD", 新片段 = "EFGH", candidate = "CD\nEFGH" 超长且不含代码块，那么就直接把 candidate 切成 "CD\nEFG" 和 "H" 两块，而不是保留 overlap "CD" 作为下一块的开头。
+"""
 
 @dataclass(slots=True)
 class _ChunkConfig:

@@ -13,7 +13,7 @@ class LLMFactory:
     """Provider registry and constructor for LLM implementations."""
 
     _REGISTRY: dict[str, FactoryBuilder] = {}
-    _BUILTIN_PROVIDERS = {"openai", "azure", "deepseek"}
+    _BUILTIN_PROVIDERS = {"openai", "azure", "deepseek", "ollama"}
 
     @classmethod
     def register(cls, provider: str, builder: FactoryBuilder) -> None:
@@ -58,4 +58,8 @@ class LLMFactory:
             from libs.llm.deepseek_llm import DeepSeekLLM
 
             return DeepSeekLLM
+        if provider == "ollama":
+            from libs.llm.ollama_llm import OllamaLLM
+
+            return OllamaLLM
         return None

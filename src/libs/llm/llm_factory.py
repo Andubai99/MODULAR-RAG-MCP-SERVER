@@ -13,6 +13,7 @@ class LLMFactory:
     """Provider registry and constructor for LLM implementations."""
 
     _REGISTRY: dict[str, FactoryBuilder] = {}
+    _BUILTIN_PROVIDERS = {"openai", "azure", "deepseek"}
 
     @classmethod
     def register(cls, provider: str, builder: FactoryBuilder) -> None:
@@ -26,7 +27,10 @@ class LLMFactory:
         provider = cls._extract_provider(settings)
         builder = cls._REGISTRY.get(provider)
         if builder is None:
-            supported = ", ".join(sorted(cls._REGISTRY)) or "<none>"
+            builder = cls._builtin_builder(provider)
+        if builder is None:
+            supported_providers = sorted(set(cls._REGISTRY) | cls._BUILTIN_PROVIDERS)
+            supported = ", ".join(supported_providers) or "<none>"
             raise ValueError(
                 f"Unknown LLM provider: '{provider}'. Supported providers: {supported}."
             )
@@ -39,3 +43,19 @@ class LLMFactory:
         if not isinstance(provider, str) or not provider.strip():
             raise ValueError("settings.llm.provider must be a non-empty string.")
         return provider.strip().lower()
+
+    @staticmethod
+    def _builtin_builder(provider: str) -> FactoryBuilder | None:
+        if provider == "openai":
+            from libs.llm.openai_llm import OpenAILLM
+
+            return OpenAILLM
+        if provider == "azure":
+            from libs.llm.azure_llm import AzureLLM
+
+            return AzureLLM
+        if provider == "deepseek":
+            from libs.llm.deepseek_llm import DeepSeekLLM
+
+            return DeepSeekLLM
+        return None

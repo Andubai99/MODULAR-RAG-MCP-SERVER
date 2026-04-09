@@ -20,13 +20,12 @@ Sync Spec → Find Task → Implement → Test (≤3 fix rounds) → Persist
 Pause only at the end for commit confirmation. Run everything else autonomously.
 
 > **⚠️ CRITICAL: Activate `.venv` before ANY `python`/`pytest` command (idempotent, re-run if unsure).**
->
 > - **Windows**: `.\.venv\Scripts\Activate.ps1`
 > - **macOS/Linux**: `source .venv/bin/activate`
 
 ## Reference Map
 
-All files under `.github/skills/auto-coder/references/`:
+All files under `.claude/skills/auto-coder/references/`:
 
 | File | Content | When to Read |
 |------|---------|-------------|
@@ -43,11 +42,11 @@ All files under `.github/skills/auto-coder/references/`:
 ### 1. Sync Spec
 
 ```powershell
-python .github/skills/auto-coder/scripts/sync_spec.py
+python .claude/skills/auto-coder/scripts/sync_spec.py
 ```
 
 Then read the schedule file to get task statuses:
-- Read `.github/skills/auto-coder/references/06-schedule.md`
+- Read `.claude/skills/auto-coder/references/06-schedule.md`
 
 Task markers:
 
@@ -69,7 +68,7 @@ Quick-check predecessor artifacts exist (file-level only). On mismatch, log a wa
 
 ### 3. Implement
 
-1. **Read relevant spec** from `.github/skills/auto-coder/references/`:
+1. **Read relevant spec** from `.claude/skills/auto-coder/references/`:
    - Architecture: `05-architecture.md`
    - Tech details: `03-tech-stack.md`
    - Testing conventions: `04-testing.md`
@@ -108,17 +107,14 @@ Round 3 still failing → STOP, show failure report to user
 ### 5. Persist
 
 1. **Update `DEV_SPEC.md`** (global file): change task marker `[ ]` → `[x]`
-2. **Re-sync**: `python .github/skills/auto-coder/scripts/sync_spec.py --force`
+2. **Re-sync**: `python .claude/skills/auto-coder/scripts/sync_spec.py --force`
 3. **Show summary & ask**:
 
 ```
 ✅ [A3] 配置加载与校验 — done
    Files: src/core/settings.py, tests/unit/test_settings.py
    Tests: 8/8 passed
-   Commit: feat(config): [A3] 实现配置加载与校验
-   描述:
-   - 新增配置加载与字段校验逻辑
-   - 补充对应单元测试并覆盖异常路径
+   Commit: feat(config): [A3] implement config loader
 
    "commit" → git add + commit
    "skip"   → end
@@ -126,24 +122,3 @@ Round 3 still failing → STOP, show failure report to user
 ```
 
 On "next", loop back to step 1 and start the next task.
-
-4. **Commit Language Rule (Mandatory)**:
-   - During commit, both `summarize` (first `-m`) and `description` (second `-m`) must be written in Chinese.
-   - Allowed exceptions: code identifiers, file paths, library names, and task IDs can remain in English.
-   - Recommended format:
-     - `summarize`: `type(scope): [TaskID] 中文摘要`
-     - `description`: start with `描述:` and use Chinese bullet points to describe key changes and test results.
-
----
-
-### 6. Progress Sync (Added Rule)
-
-When updating Section 6 (`### 📊 进度跟踪表 (Progress Tracking)`) in `DEV_SPEC.md`, always sync Section 6 `### 📈 总体进度` in the same edit.
-
-Required updates:
-1. Recalculate the affected stage row:
-   - `已完成` = count of `[x]` tasks in that stage's progress table
-   - `进度` = integer percentage of `已完成 / 总任务数 * 100` (rounded to nearest integer)
-2. Recalculate the `总计` row in `总体进度`:
-   - Total completed tasks across Stage A-I
-   - Overall percentage with the same rounding rule

@@ -20,7 +20,6 @@ Sync Spec → Find Task → Implement → Test (≤3 fix rounds) → Persist
 Pause only at the end for commit confirmation. Run everything else autonomously.
 
 > **⚠️ CRITICAL: Activate `.venv` before ANY `python`/`pytest` command (idempotent, re-run if unsure).**
->
 > - **Windows**: `.\.venv\Scripts\Activate.ps1`
 > - **macOS/Linux**: `source .venv/bin/activate`
 
@@ -147,3 +146,8 @@ Required updates:
 2. Recalculate the `总计` row in `总体进度`:
    - Total completed tasks across Stage A-I
    - Overall percentage with the same rounding rule
+
+Example:
+- If `A1` is completed (and Stage A has 3 total tasks), update `阶段 A` in `总体进度` to:
+  - `已完成 = 1`
+  - `进度 = 33%`

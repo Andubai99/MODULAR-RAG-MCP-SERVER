@@ -13,7 +13,6 @@ class SplitterFactory:
     """Strategy registry and constructor for splitter implementations."""
 
     _REGISTRY: dict[str, FactoryBuilder] = {}
-    _BUILTIN_STRATEGIES = {"recursive"}
 
     @classmethod
     def register(cls, strategy: str, builder: FactoryBuilder) -> None:
@@ -27,10 +26,7 @@ class SplitterFactory:
         strategy = cls._extract_strategy(settings)
         builder = cls._REGISTRY.get(strategy)
         if builder is None:
-            builder = cls._builtin_builder(strategy)
-        if builder is None:
-            supported_strategies = sorted(set(cls._REGISTRY) | cls._BUILTIN_STRATEGIES)
-            supported = ", ".join(supported_strategies) or "<none>"
+            supported = ", ".join(sorted(cls._REGISTRY)) or "<none>"
             raise ValueError(
                 f"Unknown splitter strategy: '{strategy}'. "
                 f"Supported strategies: {supported}."
@@ -44,11 +40,3 @@ class SplitterFactory:
         if not isinstance(strategy, str) or not strategy.strip():
             raise ValueError("settings.ingestion.splitter must be a non-empty string.")
         return strategy.strip().lower()
-
-    @staticmethod
-    def _builtin_builder(strategy: str) -> FactoryBuilder | None:
-        if strategy == "recursive":
-            from libs.splitter.recursive_splitter import RecursiveSplitter
-
-            return RecursiveSplitter
-        return None

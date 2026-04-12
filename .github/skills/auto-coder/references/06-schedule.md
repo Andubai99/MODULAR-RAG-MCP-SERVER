@@ -60,7 +60,7 @@
 | B7.4 | Ollama Embedding 实现 | [x] | 2026-04-09 | ollama embedding + mock tests |
 | B7.5 | Recursive Splitter 默认实现 | [x] | 2026-04-09 | recursive splitter + lib tests |
 | B7.6 | ChromaStore 默认实现 | [x] | 2026-04-12 | chroma store + roundtrip tests |
-| B7.7 | LLM Reranker 实现 | [ ] | | |
+| B7.7 | LLM Reranker 实现 | [x] | 2026-04-12 | llm reranker + schema/fallback tests |
 | B7.8 | Cross-Encoder Reranker 实现 | [ ] | | |
 | B8 | Vision LLM 抽象接口与工厂集成 | [ ] | | |
 | B9 | Azure Vision LLM 实现 | [ ] | | |
@@ -156,7 +156,7 @@
 | 阶段 | 总任务数 | 已完成 | 进度 |
 |------|---------|--------|------|
 | 阶段 A | 3 | 3 | 100% |
-| 阶段 B | 16 | 12 | 75% |
+| 阶段 B | 16 | 13 | 81% |
 | 阶段 C | 15 | 0 | 0% |
 | 阶段 D | 7 | 0 | 0% |
 | 阶段 E | 6 | 0 | 0% |
@@ -164,7 +164,7 @@
 | 阶段 G | 6 | 0 | 0% |
 | 阶段 H | 5 | 0 | 0% |
 | 阶段 I | 5 | 0 | 0% |
-| **总计** | **68** | **15** | **22%** |
+| **总计** | **68** | **16** | **24%** |
 
 
 ---

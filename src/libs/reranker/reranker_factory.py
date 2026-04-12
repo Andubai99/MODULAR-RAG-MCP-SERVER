@@ -26,6 +26,7 @@ class RerankerFactory:
     """Provider registry and constructor for reranker implementations."""
 
     _REGISTRY: dict[str, FactoryBuilder] = {}
+    _BUILTIN_PROVIDERS = {"none", "llm"}
 
     @classmethod
     def register(cls, provider: str, builder: FactoryBuilder) -> None:
@@ -46,7 +47,9 @@ class RerankerFactory:
 
         builder = cls._REGISTRY.get(provider)
         if builder is None:
-            supported = sorted(set(cls._REGISTRY) | {"none"})
+            builder = cls._builtin_builder(provider)
+        if builder is None:
+            supported = sorted(set(cls._REGISTRY) | cls._BUILTIN_PROVIDERS)
             supported_text = ", ".join(supported) or "<none>"
             raise ValueError(
                 f"Unknown reranker provider: '{provider}'. "
@@ -61,3 +64,11 @@ class RerankerFactory:
         if not isinstance(provider, str) or not provider.strip():
             raise ValueError("settings.rerank.provider must be a non-empty string.")
         return provider.strip().lower()
+
+    @staticmethod
+    def _builtin_builder(provider: str) -> FactoryBuilder | None:
+        if provider == "llm":
+            from libs.reranker.llm_reranker import LLMReranker
+
+            return LLMReranker
+        return None

@@ -1972,7 +1972,7 @@ dashboard:
 | B7.6 | ChromaStore 默认实现 | [x] | 2026-04-12 | chroma store + roundtrip tests |
 | B7.7 | LLM Reranker 实现 | [x] | 2026-04-12 | llm reranker + schema/fallback tests |
 | B7.8 | Cross-Encoder Reranker 实现 | [x] | 2026-04-12 | cross encoder reranker + fallback tests |
-| B8 | Vision LLM 抽象接口与工厂集成 | [ ] | | |
+| B8 | Vision LLM 抽象接口与工厂集成 | [x] | 2026-04-12 | base vision llm + vision factory tests |
 | B9 | Azure Vision LLM 实现 | [ ] | | |
 
 #### 阶段 C：Ingestion Pipeline MVP
@@ -2066,7 +2066,7 @@ dashboard:
 | 阶段 | 总任务数 | 已完成 | 进度 |
 |------|---------|--------|------|
 | 阶段 A | 3 | 3 | 100% |
-| 阶段 B | 16 | 14 | 88% |
+| 阶段 B | 16 | 15 | 94% |
 | 阶段 C | 15 | 0 | 0% |
 | 阶段 D | 7 | 0 | 0% |
 | 阶段 E | 6 | 0 | 0% |
@@ -2074,7 +2074,7 @@ dashboard:
 | 阶段 G | 6 | 0 | 0% |
 | 阶段 H | 5 | 0 | 0% |
 | 阶段 I | 5 | 0 | 0% |
-| **总计** | **68** | **17** | **25%** |
+| **总计** | **68** | **18** | **26%** |
 
 
 ---

@@ -13,6 +13,7 @@ class VectorStoreFactory:
     """Provider registry and constructor for vector store implementations."""
 
     _REGISTRY: dict[str, FactoryBuilder] = {}
+    _BUILTIN_PROVIDERS = {"chroma"}
 
     @classmethod
     def register(cls, provider: str, builder: FactoryBuilder) -> None:
@@ -26,7 +27,10 @@ class VectorStoreFactory:
         provider = cls._extract_provider(settings)
         builder = cls._REGISTRY.get(provider)
         if builder is None:
-            supported = ", ".join(sorted(cls._REGISTRY)) or "<none>"
+            builder = cls._builtin_builder(provider)
+        if builder is None:
+            supported_providers = sorted(set(cls._REGISTRY) | cls._BUILTIN_PROVIDERS)
+            supported = ", ".join(supported_providers) or "<none>"
             raise ValueError(
                 f"Unknown vector store provider: '{provider}'. "
                 f"Supported providers: {supported}."
@@ -42,3 +46,11 @@ class VectorStoreFactory:
                 "settings.vector_store.provider must be a non-empty string."
             )
         return provider.strip().lower()
+
+    @staticmethod
+    def _builtin_builder(provider: str) -> FactoryBuilder | None:
+        if provider == "chroma":
+            from libs.vector_store.chroma_store import ChromaStore
+
+            return ChromaStore
+        return None

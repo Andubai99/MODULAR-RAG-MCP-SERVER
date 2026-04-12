@@ -26,7 +26,7 @@ class RerankerFactory:
     """Provider registry and constructor for reranker implementations."""
 
     _REGISTRY: dict[str, FactoryBuilder] = {}
-    _BUILTIN_PROVIDERS = {"none", "llm"}
+    _BUILTIN_PROVIDERS = {"none", "llm", "cross_encoder"}
 
     @classmethod
     def register(cls, provider: str, builder: FactoryBuilder) -> None:
@@ -71,4 +71,8 @@ class RerankerFactory:
             from libs.reranker.llm_reranker import LLMReranker
 
             return LLMReranker
+        if provider == "cross_encoder":
+            from libs.reranker.cross_encoder_reranker import CrossEncoderReranker
+
+            return CrossEncoderReranker
         return None

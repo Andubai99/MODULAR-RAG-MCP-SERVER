@@ -17,7 +17,7 @@ class LLMFactory:
     _REGISTRY: dict[str, FactoryBuilder] = {}
     _VISION_REGISTRY: dict[str, VisionFactoryBuilder] = {}
     _BUILTIN_PROVIDERS = {"openai", "azure", "deepseek", "ollama"}
-    _BUILTIN_VISION_PROVIDERS: set[str] = set()
+    _BUILTIN_VISION_PROVIDERS = {"azure"}
 
     @classmethod
     def register(cls, provider: str, builder: FactoryBuilder) -> None:
@@ -101,5 +101,8 @@ class LLMFactory:
 
     @staticmethod
     def _builtin_vision_builder(provider: str) -> VisionFactoryBuilder | None:
-        del provider
+        if provider == "azure":
+            from libs.llm.azure_vision_llm import AzureVisionLLM
+
+            return AzureVisionLLM
         return None

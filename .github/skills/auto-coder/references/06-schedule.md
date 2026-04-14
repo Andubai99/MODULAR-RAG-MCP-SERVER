@@ -77,7 +77,7 @@
 | C6 | MetadataEnricher | [x] | 2026-04-14 | metadata enricher rule+llm fallback with contract tests |
 | C7 | ImageCaptioner | [x] | 2026-04-14 | image captioner llm path + fallback tests |
 | C8 | DenseEncoder | [x] | 2026-04-14 | dense encoder batch embed + contract tests |
-| C9 | SparseEncoder | [ ] | | |
+| C9 | SparseEncoder | [x] | 2026-04-14 | sparse encoder bm25 term weights + tests |
 | C10 | BatchProcessor | [ ] | | |
 | C11 | BM25Indexer（倒排索引+IDF计算） | [ ] | | |
 | C12 | VectorUpserter（幂等upsert） | [ ] | | |
@@ -157,14 +157,14 @@
 |------|---------|--------|------|
 | 阶段 A | 3 | 3 | 100% |
 | 阶段 B | 16 | 16 | 100% |
-| 阶段 C | 15 | 8 | 53% |
+| 阶段 C | 15 | 9 | 60% |
 | 阶段 D | 7 | 0 | 0% |
 | 阶段 E | 6 | 0 | 0% |
 | 阶段 F | 5 | 0 | 0% |
 | 阶段 G | 6 | 0 | 0% |
 | 阶段 H | 5 | 0 | 0% |
 | 阶段 I | 5 | 0 | 0% |
-| **总计** | **68** | **27** | **40%** |
+| **总计** | **68** | **28** | **41%** |
 
 
 ---

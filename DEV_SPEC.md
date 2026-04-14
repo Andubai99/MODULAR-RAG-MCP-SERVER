@@ -1993,7 +1993,7 @@ dashboard:
 | C12 | VectorUpserter（幂等upsert） | [x] | 2026-04-14 | deterministic chunk id + idempotent upsert tests |
 | C13 | ImageStorage（图片存储+SQLite索引） | [x] | 2026-04-14 | image file persistence + sqlite index mapping tests |
 | C14 | Pipeline 编排（MVP 串起来） | [x] | 2026-04-14 | ingestion pipeline orchestration + integration tests |
-| C15 | 脚本入口 ingest.py | [ ] | | |
+| C15 | 脚本入口 ingest.py | [x] | 2026-04-14 | ingest cli + e2e skip/force behavior tests |
 
 #### 阶段 D：Retrieval MVP
 
@@ -2067,14 +2067,14 @@ dashboard:
 |------|---------|--------|------|
 | 阶段 A | 3 | 3 | 100% |
 | 阶段 B | 16 | 16 | 100% |
-| 阶段 C | 15 | 14 | 93% |
+| 阶段 C | 15 | 15 | 100% |
 | 阶段 D | 7 | 0 | 0% |
 | 阶段 E | 6 | 0 | 0% |
 | 阶段 F | 5 | 0 | 0% |
 | 阶段 G | 6 | 0 | 0% |
 | 阶段 H | 5 | 0 | 0% |
 | 阶段 I | 5 | 0 | 0% |
-| **总计** | **68** | **33** | **49%** |
+| **总计** | **68** | **34** | **50%** |
 
 
 ---

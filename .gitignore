@@ -58,6 +58,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+temp_*/
 
 # QA Test credentials and config backups
 config/test_credentials.yaml
@@ -105,3 +106,6 @@ traces.jsonl
 .env.*.local
 secrets.yaml
 nonexistent_traces.jsonl/
+
+# important txt
+API.txt

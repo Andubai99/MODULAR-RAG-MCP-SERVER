@@ -1,33 +1,33 @@
 llm:
   provider: "openai"
-  model: "gpt-4o"
+  model: "moonshot-v1-8k"
   deployment_name: ""
   azure_endpoint: ""
   api_version: ""
-  api_key: "<OPENAI_API_KEY>"
-  base_url: ""
-  temperature: 0.0
+  api_key: "sk-4kbGfx636poyoR9R556WuEGvvpqQMQfG25y4Dos7E5y9pKYr"
+  base_url: "https://api.moonshot.cn/v1"
+  temperature: 1.0
   max_tokens: 4096
 
 embedding:
   provider: "openai"
-  model: "text-embedding-ada-002"
-  dimensions: 1536
+  model: "embedding-3"
+  dimensions: 2048
   azure_endpoint: ""
   deployment_name: ""
   api_version: ""
-  api_key: "<OPENAI_API_KEY>"
-  base_url: ""
+  api_key: "c358e417ba27494387b88b242d8e2c8d.B3vYQYMUA5gGQ6Cv"
+  base_url: "https://open.bigmodel.cn/api/paas/v4"
 
 vision_llm:
-  enabled: true
+  enabled: false
   provider: "openai"
-  model: "gpt-4o"
+  model: "kimi-k2.5"
   azure_endpoint: ""
   deployment_name: ""
   api_version: ""
-  api_key: "<OPENAI_API_KEY>"
-  base_url: ""
+  api_key: "sk-68Fz7KMU9w3DeTFKkGmVJ3yh2h1EKDACgRLlJOhX34Wgxvzq"
+  base_url: "https://api.moonshot.cn/v1"
   max_image_size: 2048
 
 vector_store:

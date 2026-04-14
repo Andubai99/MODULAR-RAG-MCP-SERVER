@@ -101,11 +101,13 @@ class ChromaStore(BaseVectorStore):
     def _save(self) -> None:
         payload = list(self._records_by_id.values())
         tmp_path = self._store_path.with_suffix(".json.tmp")
-        tmp_path.write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2),
-            encoding="utf-8",
-        )
-        tmp_path.replace(self._store_path)
+        content = json.dumps(payload, ensure_ascii=False, indent=2)
+        tmp_path.write_text(content, encoding="utf-8")
+        try:
+            tmp_path.replace(self._store_path)
+        except PermissionError:
+            # Fallback for restrictive Windows environments where atomic replace is blocked.
+            self._store_path.write_text(content, encoding="utf-8")
 
     @staticmethod
     def _normalize_record(raw_record: Any) -> VectorRecord:

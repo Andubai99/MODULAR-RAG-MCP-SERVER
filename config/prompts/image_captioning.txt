@@ -1,2 +1,8 @@
 Describe the image accurately for retrieval.
 Focus on entities, actions, numbers, and chart/table trends.
+Use concise, factual language.
+
+Chunk Context:
+{text}
+
+Image ID: {image_id}

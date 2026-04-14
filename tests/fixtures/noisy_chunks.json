@@ -1,0 +1,10 @@
+{
+  "typical_noise_scenario": "Page 1\n\n  This   is   a   sample text.  \n\nPage 1 of 10\n---\n",
+  "ocr_errors": "Th1s   1s   OCR   t3xt  w1th    n0ise.",
+  "page_header_footer": "Page 9\nSection title\nMain content line.\nPage 9 of 20",
+  "excessive_whitespace": "Line one.\n\n\n\nLine two.\t\tLine three.",
+  "format_markers": "<!-- hidden comment -->Visible text.\n\n---\nKeep this.",
+  "clean_text": "Clean paragraph one.\n\nClean paragraph two.",
+  "code_blocks": "Normal text.\n\n```python\nx = 1\nprint(x)\n```\n\nPage 1",
+  "mixed_noise": "Page 2\n<!-- ad -->\nReal content.\n\n```js\nconst a = 1;\n```\n\nPage 2 of 8"
+}
